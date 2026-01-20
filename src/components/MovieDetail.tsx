@@ -335,7 +335,7 @@ const MovieDetail = ({ movie, credits, watchProviders }: MovieDetailProps) => {
     if (!providers || providers.length === 0) return null;
 
     return (
-      <div className="mb-4">
+      <div className="mb-4 last:mb-0">
         <h4 className="text-sm font-medium text-muted-foreground mb-2">{title}</h4>
         <div className="flex flex-wrap gap-2">
           {providers
@@ -658,19 +658,6 @@ const MovieDetail = ({ movie, credits, watchProviders }: MovieDetailProps) => {
                         {renderProviderSection(countryProviders.rent, "Rent")}
                         {renderProviderSection(countryProviders.buy, "Buy")}
                         {renderProviderSection(countryProviders.ads, "With Ads")}
-
-                        {countryProviders.link && (
-                          <div className="pt-2 border-t">
-                            <a
-                              href={countryProviders.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-sm text-blue-600 hover:text-blue-800 underline"
-                            >
-                              View all providers on TMDB →
-                            </a>
-                          </div>
-                        )}
                       </div>
                     );
                   })()}
