@@ -10,7 +10,7 @@ export default function NewsletterUnsubscribePage() {
             Enter your email address to unsubscribe from our newsletter.
           </p>
         </div>
-        <NewsletterForm variant="card" />
+        <NewsletterForm variant="card" initialMode="unsubscribe" />
       </div>
     </div>
   );

@@ -11,13 +11,14 @@ import { Mail, CheckCircle, XCircle, Loader2 } from 'lucide-react';
 type NewsletterFormProps = {
   variant?: 'inline' | 'card';
   className?: string;
+  initialMode?: 'subscribe' | 'unsubscribe';
 };
 
-const NewsletterForm = ({ variant = 'card', className }: NewsletterFormProps) => {
+const NewsletterForm = ({ variant = 'card', className, initialMode = 'subscribe' }: NewsletterFormProps) => {
   const [email, setEmail] = useState('');
   const [isPending, startTransition] = useTransition();
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
-  const [mode, setMode] = useState<'subscribe' | 'unsubscribe'>('subscribe');
+  const [mode, setMode] = useState<'subscribe' | 'unsubscribe'>(initialMode);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
