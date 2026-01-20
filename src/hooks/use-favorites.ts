@@ -1,13 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import getFavoritesDB, { FavoriteMovie } from '@/lib/pouchdb';
-
-interface Movie {
-  id: number;
-  title: string;
-  poster_path: string | null;
-  release_date: string;
-  vote_average: number;
-}
+import getFavoritesDB from '@/lib/pouchdb';
+import { Movie, FavoriteMovie } from '@/lib/types';
 
 export const useFavorites = () => {
   const [favorites, setFavorites] = useState<FavoriteMovie[]>([]);
@@ -69,12 +62,12 @@ export const useFavorites = () => {
     }
   }, [loadFavorites, isClient]);
 
-  const toggleFavorite = useCallback(async (movie: Movie) => {
-    if (!isClient) return false;
+  const toggleFavorite = useCallback(async (movie: Movie): Promise<void> => {
+    if (!isClient) return;
 
     try {
       const db = getFavoritesDB();
-      const isNowFavorite = await db.toggleFavorite({
+      await db.toggleFavorite({
         movieId: movie.id,
         title: movie.title,
         poster_path: movie.poster_path,
@@ -82,7 +75,6 @@ export const useFavorites = () => {
         vote_average: movie.vote_average,
       });
       await loadFavorites(); // Refresh the list
-      return isNowFavorite;
     } catch (error) {
       console.error('Error toggling favorite:', error);
       throw error;

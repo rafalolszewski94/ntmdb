@@ -1,15 +1,5 @@
 import { useState, useEffect } from 'react';
-
-export interface FavoriteMovie {
-  _id: string;
-  _rev?: string;
-  movieId: number;
-  title: string;
-  poster_path: string | null;
-  release_date: string;
-  vote_average: number;
-  addedAt: string;
-}
+import { FavoriteMovie } from './types';
 
 // Dynamic import for PouchDB to avoid server-side rendering issues
 let PouchDB: any = null;

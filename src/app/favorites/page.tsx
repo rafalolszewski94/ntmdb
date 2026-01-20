@@ -128,40 +128,51 @@ const FavoritesPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
             >
-              {favorites.map((movie, index) => (
-                <motion.div
-                  key={movie._id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.4,
-                    delay: 0.9 + index * 0.05,
-                    type: "spring",
-                    stiffness: 200
-                  }}
-                >
-                  <div className="space-y-3">
-                    <MovieCard
-                      movie={movie}
-                      showFavoriteButton={false}
-                      showOverview={false}
-                      addedAt={movie.addedAt}
-                    />
-                    <div className="flex justify-center">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="text-xs border-red-500/30 text-red-400 hover:bg-red-500/10 hover:border-red-500/50"
-                        onClick={() => handleRemoveFavorite(movie)}
-                        aria-label="Remove from favorites"
-                      >
-                        <Heart className="h-3 w-3 mr-1 fill-red-500 text-red-500" />
-                        Remove
-                      </Button>
+              {favorites.map((favorite, index) => {
+                // Convert FavoriteMovie to Movie format for MovieCard
+                const movie = {
+                  id: favorite.movieId,
+                  title: favorite.title,
+                  poster_path: favorite.poster_path,
+                  release_date: favorite.release_date,
+                  vote_average: favorite.vote_average,
+                };
+
+                return (
+                  <motion.div
+                    key={favorite._id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.4,
+                      delay: 0.9 + index * 0.05,
+                      type: "spring",
+                      stiffness: 200
+                    }}
+                  >
+                    <div className="space-y-3">
+                      <MovieCard
+                        movie={movie}
+                        showFavoriteButton={false}
+                        showOverview={false}
+                        addedAt={favorite.addedAt}
+                      />
+                      <div className="flex justify-center">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="text-xs border-red-500/30 text-red-400 hover:bg-red-500/10 hover:border-red-500/50"
+                          onClick={() => handleRemoveFavorite(favorite)}
+                          aria-label="Remove from favorites"
+                        >
+                          <Heart className="h-3 w-3 mr-1 fill-red-500 text-red-500" />
+                          Remove
+                        </Button>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                );
+              })}
             </motion.div>
           </>
         )}

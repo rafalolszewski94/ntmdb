@@ -3,22 +3,11 @@ import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Heart } from 'lucide-react';
-
-interface Movie {
-  id?: number;
-  movieId?: number;
-  title: string;
-  overview?: string;
-  poster_path: string | null;
-  release_date: string;
-  vote_average: number;
-  vote_count?: number;
-  addedAt?: string;
-}
+import { Movie } from '@/lib/types';
 
 interface MovieCardProps {
   movie: Movie;
-  onToggleFavorite?: (movie: Movie) => void;
+  onToggleFavorite?: (movie: Movie) => Promise<void> | void;
   isFavorite?: boolean;
   showFavoriteButton?: boolean;
   showOverview?: boolean;
@@ -54,7 +43,7 @@ const MovieCard = ({
     }
   };
 
-  const movieId = movie.id || movie.movieId;
+  const movieId = movie.id;
 
   return (
     <Link href={`/movie/${movieId}`}>
@@ -74,7 +63,7 @@ const MovieCard = ({
           <Button
             variant="ghost"
             size="icon"
-            className="absolute top-2 right-2 z-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/50 hover:bg-black/70 text-white border-0"
+            className="absolute top-2 right-2 z-4 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200 bg-black/50 hover:bg-black/70 text-white border-0"
             onClick={handleToggleFavorite}
             aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
           >

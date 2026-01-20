@@ -1,15 +1,6 @@
 import { useFavorites } from '@/hooks/use-favorites';
 import MovieCard from './MovieCard';
-
-interface Movie {
-  id: number;
-  title: string;
-  overview: string;
-  poster_path: string | null;
-  release_date: string;
-  vote_average: number;
-  vote_count: number;
-}
+import { Movie } from '@/lib/types';
 
 interface MoviesListProps {
   movies: Movie[];
