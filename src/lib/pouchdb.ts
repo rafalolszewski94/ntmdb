@@ -1,7 +1,16 @@
-import { useState, useEffect } from 'react';
 import { FavoriteMovie } from './types';
 
+// Types for PouchDB
+interface PouchDBError extends Error {
+  status?: number;
+}
+
+interface PouchDBRow {
+  doc?: FavoriteMovie;
+}
+
 // Dynamic import for PouchDB to avoid server-side rendering issues
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let PouchDB: any = null;
 
 const loadPouchDB = async () => {
@@ -15,6 +24,7 @@ const loadPouchDB = async () => {
 };
 
 class FavoritesDB {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private db: any;
 
   async init() {
@@ -40,7 +50,7 @@ class FavoritesDB {
       const db = await this.init();
       await db.put(favorite);
     } catch (error) {
-      if ((error as any).status === 409) {
+      if ((error as PouchDBError).status === 409) {
         // Document already exists, which is fine for favorites
         return;
       }
@@ -54,7 +64,7 @@ class FavoritesDB {
       const doc = await db.get(`movie-${movieId}`);
       await db.remove(doc);
     } catch (error) {
-      if ((error as any).status === 404) {
+      if ((error as PouchDBError).status === 404) {
         // Document doesn't exist, which is fine
         return;
       }
@@ -67,8 +77,8 @@ class FavoritesDB {
       const db = await this.init();
       const result = await db.allDocs({ include_docs: true });
       return result.rows
-        .map((row: any) => row.doc)
-        .filter((doc: any): doc is FavoriteMovie => doc !== undefined)
+        .map((row: PouchDBRow) => row.doc)
+        .filter((doc: FavoriteMovie | undefined): doc is FavoriteMovie => doc !== undefined)
         .sort((a: FavoriteMovie, b: FavoriteMovie) => new Date(b.addedAt).getTime() - new Date(a.addedAt).getTime());
     } catch (error) {
       console.error('Error getting favorites:', error);
@@ -82,7 +92,7 @@ class FavoritesDB {
       await db.get(`movie-${movieId}`);
       return true;
     } catch (error) {
-      if ((error as any).status === 404) {
+      if ((error as PouchDBError).status === 404) {
         return false;
       }
       throw error;

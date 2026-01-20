@@ -8,9 +8,10 @@ import { HyperText } from './ui/hyper-text';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Heart } from 'lucide-react';
+import { Movie } from '@/lib/types';
 
 interface AnimatedHomeProps {
-  movies: any[]; // You might want to type this properly based on your movie data structure
+  movies: Movie[];
 }
 
 const AnimatedHome = ({ movies }: AnimatedHomeProps) => {
