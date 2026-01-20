@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { RouterCacheProvider } from "@/components/RouterCacheProvider";
+import { Suspense } from "react";
 import "./globals.css";
 
 export const viewport = {
@@ -35,9 +36,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <RouterCacheProvider>
-            {children}
-          </RouterCacheProvider>
+          <Suspense fallback={null}>
+            <RouterCacheProvider>
+              {children}
+            </RouterCacheProvider>
+          </Suspense>
         </ThemeProvider>
       </body>
     </html>
