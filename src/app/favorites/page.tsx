@@ -55,13 +55,15 @@ const FavoritesPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <HyperText
-                className="text-3xl font-black text-foreground font-display"
-                duration={1000}
-                delay={200}
-              >
-                My Favorites
-              </HyperText>
+              <Link href="/">
+                <HyperText
+                  className="text-3xl font-black text-foreground font-display hover:text-primary transition-colors cursor-pointer"
+                  duration={1000}
+                  delay={200}
+                >
+                  My Favorites
+                </HyperText>
+              </Link>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: -20 }}
