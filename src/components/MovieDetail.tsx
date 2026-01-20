@@ -90,7 +90,7 @@ const MovieDetail = ({ movie, credits }: MovieDetailProps) => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <div className="aspect-4/3 sm:aspect-16/9 md:aspect-21/9 bg-linear-to-r from-black/60 to-transparent">
+        <div className="aspect-4/3 sm:aspect-video md:aspect-21/9 bg-linear-to-r from-black/60 to-transparent">
           <Image
             src={getImageUrl(movie.backdrop_path, 'w1280')}
             alt={movie.title}
@@ -123,17 +123,17 @@ const MovieDetail = ({ movie, credits }: MovieDetailProps) => {
             transition={{ duration: 0.5, delay: 0.6 }}
           >
             <div className="flex items-center gap-2">
-              <Star className="w-5 h-5 fill-yellow-400 text-yellow-400 flex-shrink-0" />
+              <Star className="w-5 h-5 fill-yellow-400 text-yellow-400 shrink-0" />
               <span className="font-semibold text-lg sm:text-base">{movie.vote_average.toFixed(1)}</span>
               <span className="text-gray-300 text-sm sm:text-base">({movie.vote_count.toLocaleString('en-US')} votes)</span>
             </div>
             <div className="flex items-center gap-2">
-              <Calendar className="w-4 h-4 flex-shrink-0" />
+              <Calendar className="w-4 h-4 shrink-0" />
               <span className="text-sm sm:text-base">{formatDate(movie.release_date)}</span>
             </div>
             {movie.runtime && (
               <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 flex-shrink-0" />
+                <Clock className="w-4 h-4 shrink-0" />
                 <span className="text-sm sm:text-base">{formatRuntime(movie.runtime)}</span>
               </div>
             )}
@@ -145,7 +145,7 @@ const MovieDetail = ({ movie, credits }: MovieDetailProps) => {
             transition={{ duration: 0.5, delay: 0.7 }}
           >
             {movie.genres.map((genre) => (
-              <Badge key={genre.id} variant="secondary" className="bg-white/20 text-white border-white/30 text-sm sm:text-base px-3 py-1">
+              <Badge key={genre.id} variant="secondary" className="bg-white/20 text-white border-white/30 text-sm px-3 py-1">
                 {genre.name}
               </Badge>
             ))}
