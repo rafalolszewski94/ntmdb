@@ -20,7 +20,7 @@ function getTMDBClient(): TMDB {
 export const getPopularMovies = unstable_cache(
   async () => {
     const tmdb = getTMDBClient();
-    const response = await tmdb.movies.popular();
+    const response = await tmdb.trending.trending('movie', 'week');
     return response.results.slice(0, 20);
   },
   ['popular-movies'],

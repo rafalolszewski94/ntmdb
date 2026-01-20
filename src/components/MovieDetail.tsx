@@ -633,7 +633,7 @@ const MovieDetail = ({ movie, credits, watchProviders }: MovieDetailProps) => {
                     if (!countryProviders) {
                       return (
                         <p className="text-muted-foreground">
-                          No streaming information available for {getCountryName(selectedCountry)}.
+                          No streaming information available.
                         </p>
                       );
                     }
@@ -661,56 +661,6 @@ const MovieDetail = ({ movie, credits, watchProviders }: MovieDetailProps) => {
                       </div>
                     );
                   })()}
-                </CardContent>
-              </Card>
-            </motion.div>
-          )}
-
-          {/* Production Companies */}
-          {movie.production_companies && movie.production_companies.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 1.3 }}
-            >
-              <Card>
-                <CardHeader>
-                  <CardTitle>Production Companies</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-4">
-                    {movie.production_companies.map((company, index) => (
-                      <motion.div
-                        key={company.id}
-                        className="flex items-center gap-2"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{
-                          duration: 0.4,
-                          delay: 1.4 + index * 0.1,
-                          type: "tween",
-                          stiffness: 200
-                        }}
-                      >
-                        {company.logo_path ? (
-                          <div className="relative h-8 w-32">
-                            <Image
-                              src={`https://image.tmdb.org/t/p/w200${company.logo_path}`}
-                              alt={company.name}
-                              fill
-                              sizes="128px"
-                              className="object-contain"
-                            />
-                          </div>
-                        ) : (
-                          <div className="h-8 w-8 bg-muted rounded flex items-center justify-center text-xs font-medium">
-                            {company.name[0]}
-                          </div>
-                        )}
-                        <span className="text-sm">{company.name}</span>
-                      </motion.div>
-                    ))}
-                  </div>
                 </CardContent>
               </Card>
             </motion.div>
