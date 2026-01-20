@@ -4,6 +4,9 @@ import MoviesList from '@/components/MoviesList';
 import ThemeToggle from '@/components/ThemeToggle';
 import { motion } from 'motion/react';
 import { HyperText } from './ui/hyper-text';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Heart } from 'lucide-react';
 
 interface AnimatedHomeProps {
   movies: any[]; // You might want to type this properly based on your movie data structure
@@ -53,10 +56,17 @@ const AnimatedHome = ({ movies }: AnimatedHomeProps) => {
                 Discover the latest movies and TV shows
               </motion.p>
               <motion.div
+                className="flex items-center gap-2"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.7, type: "spring", stiffness: 200 }}
+                transition={{ duration: 0.5, delay: 0.6, type: "spring", stiffness: 200 }}
               >
+                <Link href="/favorites">
+                  <Button variant="ghost" size="sm">
+                    <Heart className="w-4 h-4 mr-2" />
+                    Favorites
+                  </Button>
+                </Link>
                 <ThemeToggle />
               </motion.div>
             </motion.div>
