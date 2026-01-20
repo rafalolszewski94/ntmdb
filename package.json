@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.1.0",
+    "@react-email/components": "^1.0.6",
     "@types/pouchdb": "^6.4.2",
+    "@upstash/redis": "^1.36.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.562.0",
@@ -20,8 +22,11 @@
     "pouchdb": "^9.0.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-email": "^5.2.5",
+    "resend": "^6.8.0",
     "tailwind-merge": "^3.4.0",
-    "tmdb-ts": "^2.1.0"
+    "tmdb-ts": "^2.1.0",
+    "zod": "^4.3.5"
   },
   "devDependencies": {
     "@next/env": "^16.1.3",

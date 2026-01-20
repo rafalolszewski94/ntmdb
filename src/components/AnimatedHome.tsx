@@ -2,6 +2,7 @@
 
 import MoviesList from '@/components/MoviesList';
 import ThemeToggle from '@/components/ThemeToggle';
+import NewsletterForm from '@/components/NewsletterForm';
 import { motion } from 'motion/react';
 import { HyperText } from './ui/hyper-text';
 import Link from 'next/link';
@@ -106,6 +107,18 @@ const AnimatedHome = ({ movies }: AnimatedHomeProps) => {
         </motion.div>
 
         <MoviesList movies={movies} />
+
+        {/* Newsletter Section */}
+        <motion.div
+          className="mt-16 mb-8"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+        >
+          <div className="max-w-md mx-auto">
+            <NewsletterForm />
+          </div>
+        </motion.div>
       </motion.main>
     </motion.div>
   );
