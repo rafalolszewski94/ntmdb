@@ -90,7 +90,7 @@ const MovieDetail = ({ movie, credits }: MovieDetailProps) => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <div className="aspect-21/9 bg-linear-to-r from-black/60 to-transparent">
+        <div className="aspect-4/3 sm:aspect-16/9 md:aspect-21/9 bg-linear-to-r from-black/60 to-transparent">
           <Image
             src={getImageUrl(movie.backdrop_path, 'w1280')}
             alt={movie.title}
@@ -103,13 +103,13 @@ const MovieDetail = ({ movie, credits }: MovieDetailProps) => {
         </div>
 
         <motion.div
-          className="absolute bottom-6 left-6 text-white max-w-2xl"
+          className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 text-white max-w-2xl"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <motion.h1
-            className="text-4xl font-bold mb-2"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-2 leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
@@ -117,35 +117,35 @@ const MovieDetail = ({ movie, credits }: MovieDetailProps) => {
             {movie.title}
           </motion.h1>
           <motion.div
-            className="flex items-center gap-4 mb-4"
+            className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-4 sm:mb-6 space-y-2 sm:space-y-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
           >
-            <div className="flex items-center gap-1">
-              <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-              <span className="font-semibold">{movie.vote_average.toFixed(1)}</span>
-              <span className="text-gray-300">({movie.vote_count.toLocaleString('en-US')} votes)</span>
+            <div className="flex items-center gap-2">
+              <Star className="w-5 h-5 fill-yellow-400 text-yellow-400 flex-shrink-0" />
+              <span className="font-semibold text-lg sm:text-base">{movie.vote_average.toFixed(1)}</span>
+              <span className="text-gray-300 text-sm sm:text-base">({movie.vote_count.toLocaleString('en-US')} votes)</span>
             </div>
-            <div className="flex items-center gap-1">
-              <Calendar className="w-4 h-4" />
-              <span>{formatDate(movie.release_date)}</span>
+            <div className="flex items-center gap-2">
+              <Calendar className="w-4 h-4 flex-shrink-0" />
+              <span className="text-sm sm:text-base">{formatDate(movie.release_date)}</span>
             </div>
             {movie.runtime && (
-              <div className="flex items-center gap-1">
-                <Clock className="w-4 h-4" />
-                <span>{formatRuntime(movie.runtime)}</span>
+              <div className="flex items-center gap-2">
+                <Clock className="w-4 h-4 flex-shrink-0" />
+                <span className="text-sm sm:text-base">{formatRuntime(movie.runtime)}</span>
               </div>
             )}
           </motion.div>
           <motion.div
-            className="flex flex-wrap gap-2"
+            className="flex flex-wrap gap-2 sm:gap-3"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.7 }}
           >
             {movie.genres.map((genre) => (
-              <Badge key={genre.id} variant="secondary" className="bg-white/20 text-white border-white/30">
+              <Badge key={genre.id} variant="secondary" className="bg-white/20 text-white border-white/30 text-sm sm:text-base px-3 py-1">
                 {genre.name}
               </Badge>
             ))}
